@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>PremiumBenefits | Exclusive Rewards</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(circle at 80% 10%, #0a0c1a, #02040f);
+      font-family: 'Inter', system-ui, sans-serif;
+      padding: 2rem 1.5rem;
+      min-height: 100vh;
+    }
+
+    .main-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .content-area {
+      flex: 3;
+      min-width: 250px;
+    }
+
+    .level-sidebar {
+      flex: 0.9;
+      min-width: 200px;
+      position: sticky;
+      top: 2rem;
+      align-self: flex-start;
+      background: rgba(15, 20, 35, 0.75);
+      backdrop-filter: blur(16px);
+      border-radius: 2rem;
+      padding: 1.5rem 1rem;
+      border: 1px solid rgba(251, 146, 60, 0.5);
+      height: fit-content;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .level-sidebar h3 {
+      color: #ffd6a5;
+      font-size: 1.2rem;
+      text-align: center;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .level-sidebar h3 i {
+      color: #fb923c;
+    }
+
+    .triggers-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+
+    .level-btn {
+      background: linear-gradient(105deg, #1a1e32, #11152a);
+      border: 1px solid #fb923c;
+      border-radius: 60px;
+      padding: 8px 0;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.75rem;
+      color: #ffdead;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .level-btn i {
+      font-size: 0.75rem;
+      color: #fb923c;
+    }
+
+    .level-btn:hover {
+      background: linear-gradient(105deg, #2a2f4a, #1a1f38);
+      border-color: #f97316;
+      transform: translateY(-2px);
+    }
+
+    .level-btn.active {
+      background: linear-gradient(105deg, #ea580c, #c2410c);
+      border-color: #fdba74;
+      color: white;
+    }
+
+    .level-btn.active i {
+      color: #fff0e0;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+      cursor: pointer;
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #fb923c, #f97316, #fdba74);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: nowrap;
+      white-space: nowrap;
+      justify-content: center;
+    }
+
+    .hero h1 i {
+      background: none;
+      -webkit-text-fill-color: #fb923c;
+      font-size: 2rem;
+    }
+
+    @media (max-width: 550px) {
+      .hero h1 {
+        font-size: 1.4rem;
+        gap: 8px;
+      }
+      .hero h1 i {
+        font-size: 1.3rem;
+      }
+    }
+    @media (max-width: 400px) {
+      .hero h1 {
+        font-size: 1.2rem;
+        gap: 6px;
+      }
+      .hero h1 i {
+        font-size: 1.1rem;
+      }
+    }
+
+    .stats-card {
+      background: rgba(10, 14, 30, 0.7);
+      backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      padding: 1rem 1.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 2rem;
+      margin-bottom: 0;
+      border: 1px solid rgba(249, 115, 22, 0.4);
+    }
+
+    .total-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #fcd9b6;
+      font-weight: 600;
+    }
+
+    .total-box i {
+      font-size: 2rem;
+      color: #fb923c;
+    }
+
+    .total-number {
+      background: #0a0e20;
+      padding: 6px 20px;
+      border-radius: 50px;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fb923c;
+      font-family: monospace;
+      letter-spacing: 2px;
+      border: 1px solid #f97316;
+    }
+
+    .legend {
+      display: flex;
+      gap: 20px;
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #2d3a5e;
+    }
+
+    .dot.active {
+      background: #10b981;
+      box-shadow: 0 0 6px #34d399;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 1.5rem 0 1rem 0;
+      padding-bottom: 6px;
+      border-bottom: 2px solid rgba(249, 115, 22, 0.5);
+    }
+
+    .section-title i {
+      font-size: 1.5rem;
+      color: #fb923c;
+    }
+
+    .section-title h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #fee3c0;
+    }
+
+    .badge {
+      background: #f97316;
+      padding: 2px 12px;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #0a0a1a;
+    }
+
+    .btn-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 14px;
+      max-height: 50vh;
+      overflow-y: auto;
+      padding-right: 8px;
+    }
+
+    .btn-grid::-webkit-scrollbar {
+      width: 6px;
+    }
+    .btn-grid::-webkit-scrollbar-track {
+      background: #1e253e;
+      border-radius: 10px;
+    }
+    .btn-grid::-webkit-scrollbar-thumb {
+      background: #fb923c;
+      border-radius: 10px;
+    }
+
+    .offer-btn {
+      background: linear-gradient(105deg, #13182e, #0c1022);
+      border: 1px solid #3b3f66;
+      border-radius: 60px;
+      padding: 12px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      color: #e2e8f0;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .offer-btn:hover {
+      transform: translateY(-3px);
+      background: linear-gradient(105deg, #1c2340, #12172e);
+      border-color: #fb923c;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.4);
+    }
+
+    .offer-btn.disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      pointer-events: none;
+      background: linear-gradient(105deg, #1a2a1a, #0f1f0f);
+      border-color: #4a6a4a;
+      transform: none;
+    }
+
+    .btn-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      overflow: hidden;
+    }
+    .btn-left i {
+      font-size: 1.2rem;
+      color: #fb923c;
+      min-width: 28px;
+      text-align: center;
+    }
+    .btn-left span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .click-count {
+      background: #00000055;
+      border-radius: 40px;
+      padding: 3px 12px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: #fdba74;
+      border: 0.5px solid #fb923c;
+      font-family: monospace;
+    }
+    .offer-btn.clicked {
+      background: linear-gradient(105deg, #0f3b2a, #0a261c);
+      border-color: #10b981;
+    }
+    .offer-btn.clicked .click-count {
+      background: #064e3b;
+      color: #facc15;
+    }
+
+    .reset-btn {
+      background: rgba(249, 115, 22, 0.15);
+      border: 1px solid #f97316;
+      border-radius: 50px;
+      padding: 6px 18px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #fdba74;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .reset-btn:hover {
+      background: #f9731630;
+      color: #ffffff;
+      border-color: #fb923c;
+    }
+
+    footer {
+      margin-top: 1.5rem;
+      text-align: center;
+      color: #6b7280;
+      font-size: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    @media (max-width: 850px) {
+      .hero h1 { cursor: pointer; }
+      .main-container { flex-direction: column; }
+      .level-sidebar { display: none; }
+      .mobile-tier-bar {
+        display: block;
+        background: rgba(15, 20, 35, 0.85);
+        backdrop-filter: blur(16px);
+        border-radius: 1.5rem;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        border: 1px solid rgba(251, 146, 60, 0.5);
+      }
+      .mobile-tier-bar h3 {
+        color: #ffd6a5;
+        font-size: 1rem;
+        text-align: center;
+        margin-bottom: 0.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+      .mobile-triggers {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 8px;
+      }
+      .mobile-tier-btn {
+        background: linear-gradient(105deg, #1a1e32, #11152a);
+        border: 1px solid #fb923c;
+        border-radius: 60px;
+        padding: 6px 0;
+        font-weight: 700;
+        font-size: 0.65rem;
+        color: #ffdead;
+        cursor: pointer;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+      }
+      .mobile-tier-btn i { font-size: 0.65rem; color: #fb923c; }
+      .mobile-tier-btn.active {
+        background: linear-gradient(105deg, #ea580c, #c2410c);
+        border-color: #fdba74;
+        color: white;
+      }
+      .btn-grid { max-height: 45vh; }
+      .stats-card { margin-top: 1.5rem; }
+    }
+    @media (min-width: 851px) {
+      .mobile-tier-bar { display: none; }
+    }
+
+    /* Fixed floating reset-to-top button */
+    .floating-reset-btn {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 99999;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 46px;
+      padding: 0 16px;
+      border: 1px solid rgba(253, 186, 116, 0.85);
+      border-radius: 999px;
+      background: linear-gradient(135deg, #ea580c, #9a3412);
+      color: #ffffff;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 14px rgba(249, 115, 22, 0.28);
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .floating-reset-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5), 0 0 18px rgba(249, 115, 22, 0.38);
+    }
+    .floating-reset-btn:active {
+      transform: scale(0.96);
+    }
+    .floating-reset-btn i {
+      font-size: 1rem;
+    }
+
+    /* Fixed floating navigation toggle */
+    .floating-nav-btn {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 99999;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 46px;
+      padding: 0 16px;
+      border: 1px solid rgba(253, 186, 116, 0.85);
+      border-radius: 999px;
+      background: linear-gradient(135deg, #ea580c, #9a3412);
+      color: #ffffff;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 14px rgba(249, 115, 22, 0.28);
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .floating-nav-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5), 0 0 18px rgba(249, 115, 22, 0.38);
+    }
+    .floating-nav-btn:active {
+      transform: scale(0.96);
+    }
+    .floating-nav-btn i {
+      font-size: 1rem;
+    }
+    @media (max-width: 550px) {
+      .floating-reset-btn {
+        top: 10px;
+        left: 10px;
+        min-height: 40px;
+        padding: 0 12px;
+        font-size: 0.72rem;
+      }
+      .floating-nav-btn {
+        top: 10px;
+        right: 10px;
+        min-height: 40px;
+        padding: 0 12px;
+        font-size: 0.72rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<button type="button" class="floating-reset-btn" id="floatingResetBtn"
+        aria-label="Show triggers" title="Trigger">
+  <i class="fas fa-layer-group" aria-hidden="true"></i>
+  <span>Trigger</span>
+</button>
+
+<button type="button" class="floating-nav-btn" id="floatingNavBtn"
+        aria-label="Show offers" title="Offer">
+  <i class="fas fa-gift" aria-hidden="true"></i>
+  <span>Offer</span>
+</button>
+
+<div class="main-container">
+  <div class="content-area">
+    <div class="hero">
+      <h1 role="button" tabindex="0" aria-label="Show offers in the center"><i class="fas fa-crown"></i> PREMIUMBENEFITS <i class="fas fa-gem"></i></h1>
+    </div>
+
+    <div class="mobile-tier-bar" id="mobileTierBar">
+      <h3><i class="fas fa-layer-group"></i> Choose Tier</h3>
+      <div class="mobile-triggers" id="mobileTriggers"></div>
+    </div>
+
+    <div class="section-title" id="dynamicSectionTitle">
+      <i class="fas fa-layer-group"></i>
+      <h2 id="levelName">Tier 1 · Starter Pack</h2>
+      <div class="badge" id="levelBadge">3 Offers</div>
+    </div>
+    <div id="offersGrid" class="btn-grid"></div>
+
+    <div class="stats-card">
+      <div class="total-box">
+        <i class="fas fa-chart-line"></i>
+        <span>Total Clicks</span>
+        <div class="total-number" id="totalClicks">0</div>
+      </div>
+      <div class="legend">
+        <span><i class="dot"></i> Pending</span>
+        <span><i class="dot active"></i> Claimed</span>
+      </div>
+    </div>
+
+    <footer>
+      <span><i class="far fa-clock"></i> 200 Live Rewards · 67 Exclusive Tiers · Click & Collect</span>
+      <div class="reset-btn" id="resetAllBtn"><i class="fas fa-trash-alt"></i> Reset Counters</div>
+    </footer>
+  </div>
+
+  <div class="level-sidebar">
+    <h3><i class="fas fa-layer-group"></i> Choose Tier</h3>
+    <div class="triggers-grid" id="desktopTriggers"></div>
+  </div>
+</div>
+
+<script>
+  // ==================== 200 LINKS ====================
+  const ALL_LINKS = [
+    "https://auctionr.org/4/384dd1e2f2e0d4874617e6d7c1237279",
+    "https://auctionr.org/4/5306ac012473b380613c6b7a40aaeb81",
+    "https://auctionr.org/4/a00109f32360be22cc6b9e1abe30034a",
+    "https://auctionr.org/4/3401f388f858aae9264aaafe6d5cca0f",
+    "https://auctionr.org/4/6180d106031a9feafacfa50468735e85",
+    "https://auctionr.org/4/77925493de8ff7e5e51393865d3f0200",
+    "https://auctionr.org/4/3b80b7bd5e5a0233ddf8f564fc1e58b0",
+    "https://auctionr.org/4/b751cb743cfefd3efb743aec2f64c7a3",
+    "https://auctionr.org/4/10e8756b3eb176be9b05a6debfd6a3c4",
+    "https://auctionr.org/4/9d3912e65c88f4659d0564ca03d2ccc4",
+    "https://auctionr.org/4/3df9089b25bb046965bffd2672626ca2",
+    "https://auctionr.org/4/0b9a80f81eff40fd8fda1c0a9688bab1",
+    "https://auctionr.org/4/1816f985c72122ea04c110789e29333d",
+    "https://auctionr.org/4/97a958f536f5ee4e8af11faf0bf34f5d",
+    "https://auctionr.org/4/07aa4027c2a7b99765bff754cea7aec8",
+    "https://auctionr.org/4/f53fce74aff4e6bba08605d39c17d416",
+    "https://auctionr.org/4/c8720d188ead9e629890da250c5a4c17",
+    "https://auctionr.org/4/5a04646bc90993483176ab3b050c6876",
+    "https://auctionr.org/4/d23ac8246598c4770b453458755156dc",
+    "https://auctionr.org/4/61d04f6796a803233fe2898531434298",
+    "https://auctionr.org/4/cf77ea9c286cac618f7974f245bb9c75",
+    "https://auctionr.org/4/58411625a31429595f126f0dab9c5105",
+    "https://auctionr.org/4/e056fc0275af764252813b742d1b8d6e",
+    "https://auctionr.org/4/335c943a49c52d2e69d248f724618126",
+    "https://auctionr.org/4/800f11361914e42fcc2f7b7f936b6683",
+    "https://auctionr.org/4/51406b49899bcb98c4e28093779aecbc",
+    "https://auctionr.org/4/26d228d0975dc7668ae0d905fe5b9091",
+    "https://auctionr.org/4/327e310ccb445a5fbaebc23aaf785f9a",
+    "https://auctionr.org/4/9bfb5be7766d269e5d252852e5c91df4",
+    "https://auctionr.org/4/c0ca2432fb9ee21c2843d8132c162120",
+    "https://auctionr.org/4/4f76124be2c67cdbb47bffd50bbd5944",
+    "https://auctionr.org/4/0d8e5121a3c65f0f4950937a56d30028",
+    "https://auctionr.org/4/a34de682d50b4fdf56b940a43d1b3542",
+    "https://auctionr.org/4/6b7af31148b4fca4cac577cb3072b611",
+    "https://auctionr.org/4/868eaaaff961e6f10e2f1eeb81726d57",
+    "https://auctionr.org/4/78a2c4ef478e4f573d038b19dcb91819",
+    "https://auctionr.org/4/b4d5df7a00969a281c12c74af84b52c0",
+    "https://auctionr.org/4/38ef30a1968773c1e0d5a0ee96ce542f",
+    "https://auctionr.org/4/f3b5c760c8a0f411155c1a08909f1896",
+    "https://auctionr.org/4/dc875af67af3759c9849612fe417aa4e",
+    "https://auctionr.org/4/bc09e8046b557f8e43615d09be83eb28",
+    "https://auctionr.org/4/a0100444e3a6083b60c51bd62f4fdfe2",
+    "https://auctionr.org/4/e2624468eb7a07c545d67cafa6e66f72",
+    "https://auctionr.org/4/4c20138a7fa9b4aaf0931d2a3dd5f356",
+    "https://auctionr.org/4/e9bc4d7db6113e7d5bf57c9fb2a4c555",
+    "https://auctionr.org/4/2210170054d15cfbdd2fb62b5f320673",
+    "https://auctionr.org/4/8a61270a0461fab1970a27213ce51845",
+    "https://auctionr.org/4/04ac30d60b684490e8c9b3fe609bb069",
+    "https://auctionr.org/4/75cac1d28e1b32a26789c107d146bcfe",
+    "https://auctionr.org/4/e6a8a2391026714faa5d32bf45062405",
+    "https://auctionr.org/4/06435a7a9a13a971baf04af6d5d42c7e",
+    "https://auctionr.org/4/c48621b0756f555851e37ac8607a87b1",
+    "https://auctionr.org/4/ff4c981b719590e5b203941720201098",
+    "https://auctionr.org/4/c528941bc066aeed4640acea7e9a4612",
+    "https://auctionr.org/4/11a08868964466836e216f74f0f7eb49",
+    "https://auctionr.org/4/2e40ab14293dd8fedcd55e9a24d62821",
+    "https://auctionr.org/4/d8405da16af3da61ab1fca9150df66d2",
+    "https://auctionr.org/4/a7515260e75d075d810a7ceb516f805b",
+    "https://auctionr.org/4/6103725728c36ec36d59139614860cd0",
+    "https://auctionr.org/4/6cef35b1242afa734b6e388e35d6b292",
+    "https://auctionr.org/4/f5e74c879a47b1b55e6919637c494ea2",
+    "https://auctionr.org/4/42d446d9c4b7cb28f59fd64ec814de0e",
+    "https://auctionr.org/4/506bd9d85aa60913b97971a9e1ff4c11",
+    "https://auctionr.org/4/a30ad7b47e33c323c8085f4b50671b67",
+    "https://auctionr.org/4/13e3eb2fd1be74da324dc440bf3b392c",
+    "https://auctionr.org/4/f1a8bfdecab103e5917a737fd7538abf",
+    "https://auctionr.org/4/339daf9f5a62bfffe0a32bee070600dd",
+    "https://auctionr.org/4/61a2d207cc34fd396478b5f9747dca3a",
+    "https://auctionr.org/4/c8a8e9cc0a25a6785b859ab92682469a",
+    "https://auctionr.org/4/3ff91eb83f198b9345dfc669130649f1",
+    "https://auctionr.org/4/97b5a68e0b7ac27522c1bd3b92aef3fc",
+    "https://auctionr.org/4/9afa471a799414e0f19e34edf2cd248f",
+    "https://auctionr.org/4/641429b46cd9a70ef846908c5a5e7c92",
+    "https://auctionr.org/4/469f002ebff0bec4cc8567379f35dbe8",
+    "https://auctionr.org/4/a5c8fad1c5ca623ccb30c4dd1c6c6143",
+    "https://auctionr.org/4/3b8473e13c70cbb42afcde99ddc62c8f",
+    "https://auctionr.org/4/1ee9a9406e80299637bd1ce5177d44d0",
+    "https://auctionr.org/4/3bf776f53ce91136d614054f149529ae",
+    "https://auctionr.org/4/fdac0a8ff875bead7fea2fbe8137b1bf",
+    "https://auctionr.org/4/0ec2d99b508c7067df568fcc30e061ab",
+    "https://auctionr.org/4/f58ee38a7f94a955c40939689dc7b495",
+    "https://auctionr.org/4/6647d8b23fb36b6c5f7903a8253e7ad1",
+    "https://auctionr.org/4/5f6ee8bd24eb90c7dfc126cdd95e4fa8",
+    "https://auctionr.org/4/3d10fb71e00d8f1e927c0fc9af29d282",
+    "https://auctionr.org/4/844a9fc4bf26ccce8906b2e0806701d0",
+    "https://auctionr.org/4/94214a8a7a3c00c187e886f745083b98",
+    "https://auctionr.org/4/a2e99f2d7966b7a29c3ca4dbde71f8f5",
+    "https://auctionr.org/4/d44d58edf4b27feb3e833cdf0f22eb51",
+    "https://auctionr.org/4/c94f6ce19379e9a566c0f531dedfeb6c",
+    "https://auctionr.org/4/bddf2cbd165192b6357eecd7dad558e2",
+    "https://auctionr.org/4/58aacc5dc993d4c78d1fe5b1be6db2d9",
+    "https://auctionr.org/4/97de9039846d05762ab6fcebda1d8392",
+    "https://auctionr.org/4/f7c72297a3fd46181e87423ff161d7e0",
+    "https://auctionr.org/4/592a685e11008e49907c999f77c4edda",
+    "https://auctionr.org/4/ef1c0675531876bfb53eaa49b9cb583f",
+    "https://auctionr.org/4/908f62857b9d0d513b4ed87563952851",
+    "https://auctionr.org/4/821bb05581fed7ba22f95a279ada8346",
+    "https://auctionr.org/4/4225358e5315bb9b73f0ca904e6e4706",
+    "https://auctionr.org/4/8266e6b19f112182f5f7541cd8fb2b68",
+    "https://auctionr.org/4/f6a31b276d54f8ff67f3cc9540dc0ce2",
+    "https://auctionr.org/4/35a41b629abda8626ea7865e7158ae2d",
+    "https://auctionr.org/4/6e94098d4740a068a564494d6395f57b",
+    "https://auctionr.org/4/e1bcdf4bec804525504e84f3939d3dc0",
+    "https://auctionr.org/4/de0be120c0d9b71e2dbbda39e816f139",
+    "https://auctionr.org/4/a52af576df23c1e70e8d67a46ae0715d",
+    "https://auctionr.org/4/b9db14736256c4afb2e31ecd750434ed",
+    "https://auctionr.org/4/a7392f35187744d849ab320d0550899d",
+    "https://auctionr.org/4/9faed71e3528f6cddc4f6e9a7fa7ee63",
+    "https://auctionr.org/4/ed8828c7a27481592766463627cb37ea",
+    "https://auctionr.org/4/7608129f60329d5738d807ecd3df6102",
+    "https://auctionr.org/4/c199ccca43d108091bf67c772d1ac798",
+    "https://auctionr.org/4/9423eee86b6813a2f77462d1f54b019d",
+    "https://auctionr.org/4/9d29ee0e76a6bef2e96a25967ea6e685",
+    "https://auctionr.org/4/e409ddaa43f46b64655d341e3e7775f1",
+    "https://auctionr.org/4/d3329434404ed551d2667aa16e496222",
+    "https://auctionr.org/4/318045401078282fe0818b68b4c5109e",
+    "https://auctionr.org/4/b1b398ef2c2165e1485d7411dd85daff",
+    "https://auctionr.org/4/0549654cd241c3e03d5a6fff65c3f54b",
+    "https://auctionr.org/4/885977ed186d01a76bbe439f8c78aa9c",
+    "https://auctionr.org/4/ca806ec811eaa7e99267c8cacc16d8e6",
+    "https://auctionr.org/4/f8da90a6a9b1f4acc74bf46db4bf7574",
+    "https://auctionr.org/4/42a79699500a2c564513ac29b16ba4bb",
+    "https://auctionr.org/4/4cbdfb5b4f912922b601f63d72263500",
+    "https://auctionr.org/4/867df0acf2c24b823a95e4932ab72d83",
+    "https://auctionr.org/4/362e7a8f0acc1c6c543c908a1be6ddc1",
+    "https://auctionr.org/4/fc311033d0fc3884f5b0001d7b6d67c9",
+    "https://auctionr.org/4/6c0b3402f3112a7671a25c339ff9574f",
+    "https://auctionr.org/4/19c1227ef26efe711b8e672f7859d462",
+    "https://auctionr.org/4/1f6f8d923b9bf50988ac43241366dd28",
+    "https://auctionr.org/4/f81c93d698d41ef1cb38e5ba62a73791",
+    "https://auctionr.org/4/20e87df799dff0f96347a6f3d9e137f7",
+    "https://auctionr.org/4/915e246e5ad1ba86eecca28c87ab5744",
+    "https://auctionr.org/4/725de4d9c79e3b9b9b3fabfd38c51cbd",
+    "https://auctionr.org/4/515dfb5dc8f46a86d928470529375acd",
+    "https://auctionr.org/4/05d2388ef5c3b10a8840b046b5813c3a",
+    "https://auctionr.org/4/2757f737b312c73bbe253eee57044fca",
+    "https://auctionr.org/4/d82264a207e7ac906217e1ef585e780a",
+    "https://auctionr.org/4/c7cc2b8294a8c6db1a906bfb8254f920",
+    "https://auctionr.org/4/efc69f5070949e5cfe3f17119a5fc645",
+    "https://auctionr.org/4/f1192653d2e353555a3f561d3267c376",
+    "https://auctionr.org/4/06c1dc2ff3dced44ed6dba133a822964",
+    "https://auctionr.org/4/5a9ac2fc0b77a401afeb4999a8a8eb4f",
+    "https://auctionr.org/4/3aeb7655ef1b7bd6f6759ea3227b97f9",
+    "https://auctionr.org/4/18439ef497477de966ab75e5ae234709",
+    "https://auctionr.org/4/5c6b05b618a8985619a1c2c2e56c3ea3",
+    "https://auctionr.org/4/093a5a2a4eb7d471acd531aea8bac030",
+    "https://auctionr.org/4/c8854658cbc8a1799b4ac601b15fa973",
+    "https://auctionr.org/4/414ec88079eea3c21724281dbf38d13c",
+    "https://auctionr.org/4/ab53c817a09170c2aacff0b0bfd4aeab",
+    "https://auctionr.org/4/2a13048fee4d949b656e3f850aed9e9a",
+    "https://auctionr.org/4/6f7cf674791397ea73087999f5319293",
+    "https://auctionr.org/4/50b9b3b30ce9168c2702081f4e0b51b8",
+    "https://auctionr.org/4/6934e6a14e6db8d526580c59dd28b635",
+    "https://auctionr.org/4/9542b9599db7a51b314a163e16303acf",
+    "https://auctionr.org/4/0ae205405dc0da8b9e787af4dd589dbb",
+    "https://auctionr.org/4/92fb30cfb16480937c3c6f7f401da935",
+    "https://auctionr.org/4/c3b09ba3e02a311b23440d51fe5f46fa",
+    "https://auctionr.org/4/e10276ee4c6378457a5b8063f5802065",
+    "https://auctionr.org/4/7e5987174da7754d43ca86c537e08a90",
+    "https://auctionr.org/4/50024c6fc4b9e133e679fe20c5fdc93b",
+    "https://auctionr.org/4/7471c2cad7b4c0582b3e992fb07a70f6",
+    "https://auctionr.org/4/6b45028b461c17fb121f1752eb812654",
+    "https://auctionr.org/4/18c2b6b945cd8ba1570f43b073ebf6a9",
+    "https://auctionr.org/4/77dbcc5c83abb95c16515a5b16273d38",
+    "https://auctionr.org/4/c5a47505510a553a7cc87fca6ffb4a36",
+    "https://auctionr.org/4/6b7fa7832640496fb1aeed06b5668f8d",
+    "https://auctionr.org/4/0691e2c0115644d435dd8fb72be7f932",
+    "https://auctionr.org/4/33d45f17bdf7c13f6c75df2bde43ff6d",
+    "https://auctionr.org/4/460b74258e20b0a6ed2f28eaa7ac5873",
+    "https://auctionr.org/4/f6f0bcdd55461885bba96d3b52973fd4",
+    "https://auctionr.org/4/d7e1d52909f16ad543f418b8b6d08d6d",
+    "https://auctionr.org/4/2680a224a19efdaef554179c9fd6104b",
+    "https://auctionr.org/4/b69d28c2af78f64672de455b4e77fea0",
+    "https://auctionr.org/4/def940aa9f18b1e81adc951be7194a3a",
+    "https://auctionr.org/4/61124d9e5cb243e83c6e16c3dda3c989",
+    "https://auctionr.org/4/b4302ed8119fd79034618a9c093bcc4b",
+    "https://auctionr.org/4/81ecf1d7a1afdd5426f665af3f92a6dc",
+    "https://auctionr.org/4/53789411f82eb6d77962ac454907e944",
+    "https://auctionr.org/4/a22b4c306cacadfd4bd9f5f88cd281a3",
+    "https://auctionr.org/4/9e69d010bb1945aa22d7d007f4949d2f",
+    "https://auctionr.org/4/59b58442cc5deccd91e1bd6305e5fb61",
+    "https://auctionr.org/4/aa0f920bf05349271fdbb7e36e3f8eb8",
+    "https://auctionr.org/4/80b2f45e8d07093e9352e3e9e9850d13",
+    "https://auctionr.org/4/a0d851351c5f0ee9ab477b4129787f49",
+    "https://auctionr.org/4/9f4f5b4926d4e02fdf0aed2b60e2c0d3",
+    "https://auctionr.org/4/5747f26e9f37047af3d8c56c6b5570da",
+    "https://auctionr.org/4/b509265f4404593df6071f08b19d1b5d",
+    "https://auctionr.org/4/9503863e14d247334009b0bd0623f982",
+    "https://auctionr.org/4/499e6c1bf2a44849d757750c1b85fdca",
+    "https://auctionr.org/4/b0d874fbb4d2d6e2acb11586f1fefb3f",
+    "https://auctionr.org/4/cba440685fb5e2ffa304f0c04c5a47b5",
+    "https://auctionr.org/4/bf491a3847997b18601e0c86032a431c",
+    "https://auctionr.org/4/b3fceccad1f35b9c76971ef93fc881fb",
+    "https://auctionr.org/4/35d8e0b6740031c9c1218a461dad3006",
+    "https://auctionr.org/4/5ae3aa08aa0a73c3d6c3f44eb1bfb0ba",
+    "https://auctionr.org/4/551c2cb73f36b849b1edbc16b970c61a",
+    "https://auctionr.org/4/54f34336a7db4cd27af6a204d8ee4cbe",
+    "https://auctionr.org/4/631ed68d7c356a2ab5538d6d7ab659b2",
+    "https://auctionr.org/4/a5bcc73af0c363c6d2bd354fee2c0fbc",
+    "https://auctionr.org/4/fa1219f30ddcc4d06c64f88d087ad120"
+  ];
+
+  // ========== USER-FRIENDLY & AD-COMPLIANT OFFER NAMES ==========
+  const OFFER_NAMES = [
+    "🎆 Firework Surprise Pack",
+    "📱 Light Mobile Bonus",
+    "📸 Easy Snapshot",
+    "🌙 Night Owl Reward",
+    "☀️ Summer Surprise Deal",
+    "🎠 Carousel Bonus Spin",
+    "🍂 Autumn Bonus Drop",
+    "⭐ Pure Bonus Token",
+    "🛡️ Cozy Secure Plus",
+    "⛰️ Mountain View Reward",
+    "🧩 Friendly Mystery Tile",
+    "🎁 Simple Bonus Pack",
+    "🎡 Ferris Wheel Token",
+    "🌻 Sunflower Gift Pack",
+    "📚 Warm Insider Pass",
+    "🌈 Colorful Daily Gift",
+    "🌐 Gentle Web Access",
+    "🎵 Peaceful Sound Pack",
+    "🌊 Calm Wave Voucher",
+    "🎪 Carnival Reward Ticket",
+    "🕶️ Quiet Stealth Perk",
+    "🏕️ Campfire Bonus Kit",
+    "🕹️ Casual Gamer Perk",
+    "🎯 Clear Bonus Target",
+    "🎲 Simple Dice Reward",
+    "🧭 Kind Navigator Bonus",
+    "🌸 Floral Reward Bundle",
+    "💎 Easy Reward Gem",
+    "🎧 Calm Audio Reward",
+    "🔑 Gentle Vault Key",
+    "🏆 Friendly Milestone",
+    "🐝 Busy Bee Perk",
+    "💡 Bright Daily Deal",
+    "🔔 Soft Flash Alert",
+    "🌟 Daily Glow Reward",
+    "🃏 Gentle Wild Card",
+    "🎨 Kind Creator Kit",
+    "🏖️ Beach Day Bundle",
+    "⚡ Quick Access Pass",
+    "⚙️ Simple Utility Perk",
+    "🌌 Starry Night Gift",
+    "🔥 Warm Welcome Pack",
+    "🚀 Smooth Boost Voucher",
+    "🎢 Coaster Perk Pass",
+    "🦋 Butterfly Bonus",
+    "🌿 Pure Lucky Clover",
+    "🎈 Soft Celebration Pack",
+    "🍀 Lucky Spot Token",
+    "📀 Basic Digital Pack",
+    "❄️ Winter Perk Pack",
+    "🔥 Warm Welcome Pack",
+    "🐝 Busy Bee Perk",
+    "🔔 Soft Flash Alert",
+    "🎨 Kind Creator Kit",
+    "🐝 Busy Bee Perk",
+    "🔥 Warm Welcome Pack",
+    "🎲 Simple Dice Reward",
+    "🦋 Butterfly Bonus",
+    "🏆 Friendly Milestone",
+    "🎯 Clear Bonus Target",
+    "🏖️ Beach Day Bundle",
+    "🔥 Warm Welcome Pack",
+    "🎡 Ferris Wheel Token",
+    "🔥 Warm Welcome Pack",
+    "🌿 Pure Lucky Clover",
+    "🧭 Kind Navigator Bonus",
+    "💡 Bright Daily Deal",
+    "🌸 Floral Reward Bundle",
+    "🔔 Soft Flash Alert",
+    "🚀 Smooth Boost Voucher",
+    "🎪 Carnival Reward Ticket",
+    "🧩 Friendly Mystery Tile",
+    "🎲 Simple Dice Reward",
+    "🌙 Night Owl Reward",
+    "🌻 Sunflower Gift Pack",
+    "🌈 Colorful Daily Gift",
+    "🔑 Gentle Vault Key",
+    "🎧 Calm Audio Reward",
+    "🚀 Smooth Boost Voucher",
+    "⛰️ Mountain View Reward",
+    "🧭 Kind Navigator Bonus",
+    "🧩 Friendly Mystery Tile",
+    "🌻 Sunflower Gift Pack",
+    "🏖️ Beach Day Bundle",
+    "🍂 Autumn Bonus Drop",
+    "💡 Bright Daily Deal",
+    "🧭 Kind Navigator Bonus",
+    "🎯 Clear Bonus Target",
+    "🧭 Kind Navigator Bonus",
+    "📀 Basic Digital Pack",
+    "🦋 Butterfly Bonus",
+    "📸 Easy Snapshot",
+    "🎆 Firework Surprise Pack",
+    "⭐ Pure Bonus Token",
+    "🎲 Simple Dice Reward",
+    "🔥 Warm Welcome Pack",
+    "🕹️ Casual Gamer Perk",
+    "🌌 Starry Night Gift",
+    "⛰️ Mountain View Reward",
+    "🛡️ Cozy Secure Plus",
+    "☀️ Summer Surprise Deal",
+    "☀️ Summer Surprise Deal",
+    "🎨 Kind Creator Kit",
+    "💎 Easy Reward Gem",
+    "🎪 Carnival Reward Ticket",
+    "⭐ Pure Bonus Token",
+    "🐝 Busy Bee Perk",
+    "🔥 Warm Welcome Pack",
+    "🏕️ Campfire Bonus Kit",
+    "🎵 Peaceful Sound Pack",
+    "☀️ Summer Surprise Deal",
+    "⛰️ Mountain View Reward",
+    "🦋 Butterfly Bonus",
+    "🌊 Calm Wave Voucher",
+    "🔔 Soft Flash Alert",
+    "🌊 Calm Wave Voucher",
+    "⚡ Quick Access Pass",
+    "⚡ Quick Access Pass",
+    "🔥 Warm Welcome Pack",
+    "⭐ Pure Bonus Token",
+    "🚀 Smooth Boost Voucher",
+    "🌊 Calm Wave Voucher",
+    "🔑 Gentle Vault Key",
+    "🌊 Calm Wave Voucher",
+    "🃏 Gentle Wild Card",
+    "🌸 Floral Reward Bundle",
+    "🔔 Soft Flash Alert",
+    "🎨 Kind Creator Kit",
+    "🎢 Coaster Perk Pass",
+    "🚀 Smooth Boost Voucher",
+    "🕹️ Casual Gamer Perk",
+    "🌌 Starry Night Gift",
+    "🎧 Calm Audio Reward",
+    "🍂 Autumn Bonus Drop",
+    "🌸 Floral Reward Bundle",
+    "🧩 Friendly Mystery Tile",
+    "🎈 Soft Celebration Pack",
+    "🔥 Warm Welcome Pack",
+    "💡 Bright Daily Deal",
+    "🌊 Calm Wave Voucher",
+    "🌟 Daily Glow Reward",
+    "🎆 Firework Surprise Pack",
+    "🎠 Carousel Bonus Spin",
+    "🎆 Firework Surprise Pack",
+    "⚙️ Simple Utility Perk",
+    "💡 Bright Daily Deal",
+    "🧩 Friendly Mystery Tile",
+    "📚 Warm Insider Pass",
+    "📱 Light Mobile Bonus",
+    "🔔 Soft Flash Alert",
+    "⚡ Quick Access Pass",
+    "🎵 Peaceful Sound Pack",
+    "📀 Basic Digital Pack",
+    "🏖️ Beach Day Bundle",
+    "🏖️ Beach Day Bundle",
+    "🎯 Clear Bonus Target",
+    "⚙️ Simple Utility Perk",
+    "📸 Easy Snapshot",
+    "🐝 Busy Bee Perk",
+    "🎨 Kind Creator Kit",
+    "🎈 Soft Celebration Pack",
+    "🕹️ Casual Gamer Perk",
+    "🏕️ Campfire Bonus Kit",
+    "🏖️ Beach Day Bundle",
+    "🧭 Kind Navigator Bonus",
+    "🏕️ Campfire Bonus Kit",
+    "🎵 Peaceful Sound Pack",
+    "🔑 Gentle Vault Key",
+    "🏆 Friendly Milestone",
+    "🎢 Coaster Perk Pass",
+    "🕹️ Casual Gamer Perk",
+    "🎨 Kind Creator Kit",
+    "🎪 Carnival Reward Ticket",
+    "🃏 Gentle Wild Card",
+    "🌟 Daily Glow Reward",
+    "📸 Easy Snapshot",
+    "📱 Light Mobile Bonus",
+    "☀️ Summer Surprise Deal",
+    "🎁 Simple Bonus Pack",
+    "⛰️ Mountain View Reward",
+    "🎢 Coaster Perk Pass",
+    "🎁 Simple Bonus Pack",
+    "⚙️ Simple Utility Perk",
+    "📚 Warm Insider Pass",
+    "🌊 Calm Wave Voucher",
+    "💡 Bright Daily Deal",
+    "🎆 Firework Surprise Pack",
+    "☀️ Summer Surprise Deal",
+    "⭐ Pure Bonus Token",
+    "💎 Easy Reward Gem",
+    "🦋 Butterfly Bonus",
+    "🌟 Daily Glow Reward",
+    "🔑 Gentle Vault Key",
+    "🌈 Colorful Daily Gift",
+    "⭐ Pure Bonus Token",
+    "📀 Basic Digital Pack",
+    "🧩 Friendly Mystery Tile",
+    "🎯 Clear Bonus Target",
+    "🎢 Coaster Perk Pass",
+    "🎲 Simple Dice Reward"
+  ];
+
+  // Matching icons for each offer
+  const OFFER_ICONS = [
+    "bullseye",
+    "apple-alt",
+    "leaf",
+    "beer",
+    "gem",
+    "wine-glass",
+    "cookie",
+    "dice-d6",
+    "leaf",
+    "moon",
+    "cogs",
+    "fire",
+    "bell",
+    "crown",
+    "pepper-hot",
+    "gift",
+    "ice-cream",
+    "puzzle-piece",
+    "palette",
+    "shield-alt",
+    "coffee",
+    "book",
+    "star",
+    "camera",
+    "snowflake",
+    "globe",
+    "mobile-alt",
+    "trophy",
+    "rainbow",
+    "star-of-life",
+    "balloon",
+    "sun",
+    "gamepad",
+    "carrot",
+    "hamburger",
+    "seedling",
+    "database",
+    "sunglasses",
+    "key",
+    "pizza-slice",
+    "bolt",
+    "rocket",
+    "compass",
+    "umbrella",
+    "lightbulb",
+    "tree",
+    "music",
+    "headphones",
+    "cloud",
+    "cocktail",
+    "wine-glass",
+    "snowflake",
+    "wine-glass",
+    "leaf",
+    "star-of-life",
+    "puzzle-piece",
+    "bullseye",
+    "ice-cream",
+    "snowflake",
+    "umbrella",
+    "leaf",
+    "balloon",
+    "star-of-life",
+    "gamepad",
+    "ice-cream",
+    "cookie",
+    "compass",
+    "balloon",
+    "puzzle-piece",
+    "leaf",
+    "star-of-life",
+    "lightbulb",
+    "gift",
+    "cookie",
+    "bell",
+    "palette",
+    "lightbulb",
+    "dice-d6",
+    "pepper-hot",
+    "globe",
+    "globe",
+    "umbrella",
+    "lightbulb",
+    "sun",
+    "cookie",
+    "crown",
+    "shield-alt",
+    "hamburger",
+    "carrot",
+    "dice-d6",
+    "beer",
+    "carrot",
+    "cloud",
+    "star-of-life",
+    "shield-alt",
+    "compass",
+    "sunglasses",
+    "pepper-hot",
+    "headphones",
+    "moon",
+    "ice-cream",
+    "ice-cream",
+    "mobile-alt",
+    "beer",
+    "leaf",
+    "wine-glass",
+    "gift",
+    "beer",
+    "rainbow",
+    "headphones",
+    "ice-cream",
+    "bolt",
+    "ice-cream",
+    "book",
+    "headphones",
+    "balloon",
+    "umbrella",
+    "lightbulb",
+    "pepper-hot",
+    "database",
+    "crown",
+    "sunglasses",
+    "book",
+    "ice-cream",
+    "star-of-life",
+    "beer",
+    "shield-alt",
+    "wine-glass",
+    "balloon",
+    "carrot",
+    "hamburger",
+    "beer",
+    "camera",
+    "palette",
+    "palette",
+    "cookie",
+    "puzzle-piece",
+    "wine-glass",
+    "compass",
+    "cogs",
+    "bell",
+    "coffee",
+    "cookie",
+    "cocktail",
+    "coffee",
+    "beer",
+    "cookie",
+    "cookie",
+    "rainbow",
+    "fire",
+    "pizza-slice",
+    "snowflake",
+    "rainbow",
+    "gamepad",
+    "leaf",
+    "mobile-alt",
+    "leaf",
+    "fire",
+    "database",
+    "ice-cream",
+    "fire",
+    "rocket",
+    "puzzle-piece",
+    "gift",
+    "bullseye",
+    "rocket",
+    "crown",
+    "globe",
+    "ice-cream",
+    "globe",
+    "crown",
+    "hamburger",
+    "pepper-hot",
+    "lightbulb",
+    "cocktail",
+    "key",
+    "carrot",
+    "hamburger",
+    "balloon",
+    "compass",
+    "balloon",
+    "fire",
+    "fire",
+    "tree",
+    "dice-d6",
+    "leaf",
+    "trophy",
+    "sun",
+    "book",
+    "leaf",
+    "palette",
+    "apple-alt",
+    "moon",
+    "beer",
+    "snowflake",
+    "pizza-slice",
+    "cogs",
+    "gem",
+    "key",
+    "trophy"
+  ];
+
+  // Shuffle array utility (Fisher-Yates) for unique order per user
+  function shuffleArray(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  // Get persistent shuffled order for this user
+  function getShuffledIndices() {
+    const ORDER_KEY = "vaultShuffledOrderV3";
+    const saved = localStorage.getItem(ORDER_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      if (parsed.length === 200) return parsed;
+    }
+    const indices = Array.from({ length: 200 }, (_, i) => i);
+    shuffleArray(indices);
+    localStorage.setItem(ORDER_KEY, JSON.stringify(indices));
+    return indices;
+  }
+
+  const shuffledOrder = getShuffledIndices();
+
+  // Build tier offers using shuffled order (3 per tier)
+  const TIER_OFFERS = {};
+  for (let tier = 1; tier <= 67; tier++) {
+    TIER_OFFERS[tier] = [];
+    for (let j = 0; j < 3; j++) {
+      const globalIdx = shuffledOrder[(tier - 1) * 3 + j];
+      if (globalIdx === undefined) continue;
+      TIER_OFFERS[tier].push({
+        name: OFFER_NAMES[globalIdx % OFFER_NAMES.length],
+        icon: OFFER_ICONS[globalIdx % OFFER_ICONS.length],
+        link: ALL_LINKS[globalIdx],
+        originalIndex: globalIdx
+      });
+    }
+  }
+
+  const TOTAL_OFFERS = 200;
+  let clickCounts = new Array(TOTAL_OFFERS).fill(0);
+  let claimedStatus = new Array(TOTAL_OFFERS).fill(false);
+  const STORAGE_KEY = "vaultClicksV3";
+  const CLAIMED_KEY = "vaultClaimedV3";
+
+  function loadCounts() {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        let arr = JSON.parse(saved);
+        if (arr.length === TOTAL_OFFERS) clickCounts = arr;
+      } catch(e) {}
+    }
+    const savedClaimed = localStorage.getItem(CLAIMED_KEY);
+    if (savedClaimed) {
+      try {
+        let arr = JSON.parse(savedClaimed);
+        if (arr.length === TOTAL_OFFERS) claimedStatus = arr;
+      } catch(e) {}
+    }
+  }
+  function saveCounts() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(clickCounts));
+    localStorage.setItem(CLAIMED_KEY, JSON.stringify(claimedStatus));
+  }
+  function updateTotalDisplay() {
+    const total = clickCounts.reduce((a,b)=>a+b,0);
+    document.getElementById("totalClicks").innerText = total;
+  }
+
+  let currentTier = 1;
+
+  function renderCurrentTier() {
+    const grid = document.getElementById("offersGrid");
+    grid.innerHTML = "";
+    const offers = TIER_OFFERS[currentTier];
+    if (!offers) return;
+    const tierNames = ["Starter Pack", "Bronze Tier", "Silver Tier", "Gold Tier", "Platinum Tier", "Emerald Tier", "Ruby Tier", "Sapphire Tier", "Diamond Tier", "Ultimate Vault"];
+    const levelTitle = document.getElementById("levelName");
+    const levelBadge = document.getElementById("levelBadge");
+    levelTitle.innerText = `Tier ${currentTier} · ${tierNames[currentTier-1] || "Tier " + currentTier}`;
+    levelBadge.innerText = offers.length + " Offers";
+
+    offers.forEach((offer) => {
+      const globalIdx = offer.originalIndex;
+      const count = clickCounts[globalIdx];
+      const isClaimed = claimedStatus[globalIdx];
+      const hasClick = count > 0;
+
+      const btn = document.createElement("a");
+      if (!isClaimed) {
+        btn.href = offer.link;
+        btn.target = "_blank";
+        btn.rel = "noopener noreferrer";
+      } else {
+        btn.href = "javascript:void(0);";
+      }
+      btn.className = `offer-btn ${hasClick ? "clicked" : ""} ${isClaimed ? "disabled" : ""}`;
+      btn.setAttribute("data-global", globalIdx);
+
+      btn.innerHTML = `<div class="btn-left"><i class="fas fa-${offer.icon}"></i><span>${offer.name}</span></div><div class="click-count">${count}</div>`;
+
+      if (!isClaimed) {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          if (claimedStatus[globalIdx]) return false;
+
+          claimedStatus[globalIdx] = true;
+          clickCounts[globalIdx] += 1;
+          saveCounts();
+          updateTotalDisplay();
+          renderCurrentTier();
+
+          window.open(offer.link, "_blank");
+          return false;
+        });
+      } else {
+        btn.style.cursor = "not-allowed";
+        btn.onclick = (e) => { e.preventDefault(); return false; };
+      }
+
+      grid.appendChild(btn);
+    });
+  }
+
+  function setActiveTier(tier) {
+    currentTier = tier;
+    document.querySelectorAll(".level-btn").forEach(btn => {
+      if (parseInt(btn.getAttribute("data-level")) === tier) btn.classList.add("active");
+      else btn.classList.remove("active");
+    });
+    document.querySelectorAll(".mobile-tier-btn").forEach(btn => {
+      if (parseInt(btn.getAttribute("data-level")) === tier) btn.classList.add("active");
+      else btn.classList.remove("active");
+    });
+    renderCurrentTier();
+  }
+
+  function resetCounters() {
+    for (let i = 0; i < TOTAL_OFFERS; i++) {
+      clickCounts[i] = 0;
+      claimedStatus[i] = false;
+    }
+    saveCounts();
+    updateTotalDisplay();
+    renderCurrentTier();
+  }
+
+  function buildTriggers() {
+    const desktopContainer = document.getElementById("desktopTriggers");
+    const mobileContainer = document.getElementById("mobileTriggers");
+    desktopContainer.innerHTML = "";
+    mobileContainer.innerHTML = "";
+    for (let i = 1; i <= 67; i++) {
+      const dBtn = document.createElement("div");
+      dBtn.className = "level-btn";
+      dBtn.setAttribute("data-level", i);
+      dBtn.innerHTML = `<i class="fas fa-tag"></i> ${i}`;
+      dBtn.addEventListener("click", () => setActiveTier(i));
+      desktopContainer.appendChild(dBtn);
+      const mBtn = document.createElement("div");
+      mBtn.className = "mobile-tier-btn";
+      mBtn.setAttribute("data-level", i);
+      mBtn.innerHTML = `<i class="fas fa-tag"></i> ${i}`;
+      mBtn.addEventListener("click", () => setActiveTier(i));
+      mobileContainer.appendChild(mBtn);
+    }
+  }
+
+  // Clicking the headline on desktop or mobile smoothly centers the three offer buttons.
+  const headlineButton = document.querySelector(".hero h1");
+  function focusOffersFromHeadline() {
+    document.getElementById("offersGrid").scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  }
+  headlineButton.addEventListener("click", focusOffersFromHeadline);
+  headlineButton.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      focusOffersFromHeadline();
+    }
+  });
+
+  // The left floating Trigger button always centers the trigger options.
+  // It does not change the selected tier or any offer/click data.
+  document.getElementById("floatingResetBtn").addEventListener("click", () => {
+    const triggerArea = window.matchMedia("(max-width: 850px)").matches
+      ? document.getElementById("mobileTierBar")
+      : document.querySelector(".level-sidebar");
+
+    triggerArea.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  });
+
+  // The right floating Offer button always centers the three offer buttons.
+  // It does not toggle to another action or change any offer/click data.
+  document.getElementById("floatingNavBtn").addEventListener("click", () => {
+    document.getElementById("offersGrid").scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  });
+
+  document.getElementById("resetAllBtn").addEventListener("click", resetCounters);
+  loadCounts();
+  buildTriggers();
+  setActiveTier(1);
+  updateTotalDisplay();
+</script>
+</body>
+</html>
